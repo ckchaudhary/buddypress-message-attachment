@@ -1,0 +1,206 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BuddyPress Message Attachment 2.1.1\n"
+"Report-Msgid-Bugs-To: Chandan Chaudhary <ckchaudhary@hotmail.com>\n"
+"POT-Creation-Date: 2015-03-09 01:54+0530\n"
+"PO-Revision-Date: 2015-07-08 11:32-0500\n"
+"Last-Translator: \n"
+"Language-Team: WebDevelopersWall <ckchaudhary@hotmail.com>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Loco-Target-Locale: en_US\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ../includes/actions.php:70
+msgid "Allowed Files"
+msgstr "Archivos permitidos"
+
+#: ../includes/actions.php:82
+#, php-format
+msgid "Uploaded file must not be more than %s mb"
+msgstr "Los archivos subidos no deben ser mayores de %s mb"
+
+#: ../includes/actions.php:83
+#, php-format
+msgid ""
+"Selected file not allowed to be uploaded. It must be one of the following: %s"
+msgstr ""
+"El archivo seleccionado no está permitido. Debe ser de uno de los siguientes "
+"tipos: %s"
+
+#: ../includes/actions.php:84
+msgid "Error! File could not be uploaded."
+msgstr "Error! El archivo no pudo ser subido."
+
+#: ../includes/actions.php:86
+msgid "Remove"
+msgstr "Remover"
+
+#: ../includes/actions.php:87
+msgid "Uploading..."
+msgstr "Subiendo..."
+
+#: ../includes/admin.php:106 ../includes/admin.php:113
+msgid "BP Message Attachments"
+msgstr ""
+
+#: ../includes/admin.php:106
+msgid "Message Attachments"
+msgstr ""
+
+#: ../includes/admin.php:118
+msgid "Settings updated."
+msgstr "Opciones actualizadas."
+
+#: ../includes/admin.php:126
+msgid "Save Changes"
+msgstr "Guardar Cambios"
+
+#: ../includes/admin.php:136
+msgid "Attachment Settings"
+msgstr "Opciones de Adjuntos"
+
+#: ../includes/admin.php:137
+msgid "File Types"
+msgstr "Tipos de Archivo"
+
+#: ../includes/admin.php:138
+msgid "Maximum Size"
+msgstr "Tamaño Máximo"
+
+#: ../includes/admin.php:140
+msgid "Miscellaneous"
+msgstr "Otras opciones"
+
+#: ../includes/admin.php:141
+msgid "Load CSS"
+msgstr "Cargar CSS"
+
+#: ../includes/admin.php:142
+msgid "Query Options Table"
+msgstr ""
+
+#: ../includes/admin.php:226
+msgid "Maximum size(in MB) allowed per file."
+msgstr "Tamaño máximo (en MB) permitido por archivo."
+
+#: ../includes/admin.php:234
+#, php-format
+msgid ""
+"Based on your php configuration, maximum file size can not exceed %s MB."
+msgstr ""
+"Basado en tu configuración php, el tamaño máximo de archivo no puede exceder "
+"%s MB."
+
+#: ../includes/admin.php:241 ../includes/admin.php:248
+msgid "Yes"
+msgstr "Sí"
+
+#: ../includes/admin.php:242
+msgid ""
+"Whether to load plugin's css file or not. If you have overriden plugins' css "
+"rules in your theme, you can uncheck this."
+msgstr ""
+"Aunque se cargue el css del plugin o no. Si sobrescribes  el css del plugin "
+"en tu tema, puedes demarcar esta casilla."
+
+#: ../includes/admin.php:250
+msgid ""
+"Before message meta table was introduced in buddypress, attachments were "
+"saved in options table."
+msgstr ""
+"Antes de que la tabla de message meta fuera introducida en Buddypress, los "
+"archivos adjuntos se guardaban en la tabla de opciones."
+
+#: ../includes/admin.php:251
+msgid "Now they are saved in message meta table."
+msgstr "Ahora son guardados en la tabla de message meta"
+
+#: ../includes/admin.php:252
+msgid ""
+"But for backward compatibility, options table is still searched for "
+"attachments while displaying a message."
+msgstr ""
+"Pero para la compatibilidad con versiones anteriores, se siguen buscando "
+"archivos adjuntos en la tabla de opciones cuando se muestra un mensaje."
+
+#: ../includes/admin.php:253
+msgid "That makes 2 queries( otpions table + meta table ) instead of one."
+msgstr "Esto hace 2 consultas (tabla options + tabla meta) en lugar de uno. "
+
+#: ../includes/admin.php:254
+msgid ""
+"If you are sure you've started using this plugin after 2.2.x version, you "
+"can uncheck it."
+msgstr ""
+"Si estás seguro de haber comenzado a usar este plugin después de la versión "
+"2.2.x, puedes desmarcar la casilla."
+
+#: ../includes/admin.php:256
+msgid "Warning!"
+msgstr "Peligro!"
+
+#: ../includes/admin.php:256
+msgid "If you are not sure, DO NOT uncheck it."
+msgstr "Si no estás seguro, NO lo hagas."
+
+#: ../includes/admin.php:290
+msgid "Settings"
+msgstr "Opciones"
+
+#: ../includes/main-class.php:169
+msgid "Images"
+msgstr "Imagenes"
+
+#: ../includes/main-class.php:173
+msgid "Documents"
+msgstr "Documentos"
+
+#: ../includes/main-class.php:177
+msgid "Archives"
+msgstr "Archivos"
+
+#: ../includes/main-class.php:181
+msgid "Audio"
+msgstr "Audio"
+
+#: ../includes/main-class.php:185
+msgid "Video"
+msgstr "Video"
+
+#: ../includes/main-class.php:234 ../includes/main-class.php:236
+msgid "BuddyPress Settings"
+msgstr "Opciones de BuddyPress"
+
+#: ../includes/main-class.php:238
+#, php-format
+msgid ""
+"Hey! BuddyPress Message Attachment requires messages component enabled. "
+"Please enable it by going under %s."
+msgstr ""
+"Ey! BuddyPress Message Attachment requiere que el componente de mensajes "
+"esté habilitado. Por favor habilitalo yendo a %s."
+
+#: ../templates/form.php:3
+msgid "Add an attachment"
+msgstr "Agrega un adjunto"
+
+#: ../templates/form.php:5
+msgid "Allowed file types : "
+msgstr "Tipos de archivos permitidos: "
+
+#: ../templates/form.php:6
+msgid "Choose file"
+msgstr "Selecciona un archivo"
