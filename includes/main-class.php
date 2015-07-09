@@ -285,6 +285,7 @@ class BP_Msgat_Plugin {
 				header( 'Content-Length: ' . filesize( $file_path ) );
 				header( 'Content-Disposition: attachment; filename='.$file_file );
 				header( 'Content-Type: ' .$file_mime_type );
+				ob_clean();
 				readfile( $file_path );
 				die();
 			}
