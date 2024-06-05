@@ -11,7 +11,7 @@ Send attachments with private messages in BuddyPress!
 
 == Description ==
 
-Extend BuddyPress' private message feature by enabling attachments. This plugin enables users to send attachments in private messages. The type of file types allowed and maximum size of the attachment can be controlled by admin.
+Test Extend BuddyPress' private message feature by enabling attachments. This plugin enables users to send attachments in private messages. The type of file types allowed and maximum size of the attachment can be controlled by admin.
 
 == Installation ==
 
