@@ -158,26 +158,6 @@ function msgat_get_file_download_url() {
 }
 
 /**
- * Undocumented function
- *
- * @return void
- */
-function msgat_file_url() {
-	echo esc_url( msgat_get_file_url() );
-}
-
-/**
- * Undocumented function
- *
- * @return string
- */
-function msgat_get_file_url() {
-	global $msgat_current_file;
-	$url = $msgat_current_file['url'];
-	return apply_filters( 'msgat_get_file_url', $url );
-}
-
-/**
  * Prints the name of current attachment.
  *
  * @return void
