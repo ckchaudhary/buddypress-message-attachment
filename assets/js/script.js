@@ -1,34 +1,35 @@
 window.BPMsgAt_Media_Uploader = (function($, util) {
-	var uploader	= false,
+	let uploader	= false,
 		_uploader	= util.uploader || {},
 		lang		= util.lang,
 		selectors	= util.selectors,
 		_l			= {};
 
-	var APP = {
+	let APP = {
 		init: function() {
-			var self = this;
+			APP.setup();
 
-			if (!self.get_elements())
+			// nav click 
+			$( document ).on( 'click', '#member-secondary-nav li a', function(e){
+				util.current_action = $(this).parent().data( 'bp-user-scope' );
+				APP.setup();
+			} );
+
+			$.ajaxPrefilter(this.prefilter);
+		},
+
+		setup: function() {
+			_l = {};
+
+			if ( !APP.get_elements() ) {
 				return false;
-
-			//hide file upload if user is sending a notice to all users
-			if (_l.$cb_send_notice.length !== 0) {
-				_l.$cb_send_notice.change(function(){
-					if ($(this).is(':checked')) {
-						_l.$form.find(".bp_msgat_ui_wrapper").hide();
-					} else {
-						_l.$form.find(".bp_msgat_ui_wrapper").show();
-					}
-				});
 			}
 			
-			setTimeout(function() {
-				self.start_uploader();
-			}, 10);
-
-			$.ajaxPrefilter(APP.prefilter);
+			setTimeout( function() {
+				APP.start_uploader();
+			}, 20 );
 		},
+
 		get_elements: function() {
 			if (util.current_action == 'compose') {
 				_l.$form = $(selectors.form_message);
@@ -40,11 +41,10 @@ window.BPMsgAt_Media_Uploader = (function($, util) {
 				//There is no post message or post reply form. Bail out
 				return false;
 			}
-
-			_l.$button = _l.$form.find('input[type="submit"],button[type="submit"]');
+			
+			_l.$button = _l.$form.find('input[type="submit"],button[type="submit"],#bp-messages-send');
 			_l.$field_attachment_ids = _l.$form.find('input[name="bp_msgat_attachment_ids"]');
 			_l.$upload_button = $('#btn_msgat_upload');
-			_l.$cb_send_notice = _l.$form.find('input[name="send-notice"]');
 
 			return true;
 		},
@@ -64,27 +64,52 @@ window.BPMsgAt_Media_Uploader = (function($, util) {
 		},
 		prefilter: function(options, origOptions, jqXHR) {
 			var action = APP.get_query_variable(options.data, 'action');
-			if (typeof action == 'undefined' || action != 'messages_send_reply')
+			if ( typeof action == 'undefined' )
 				return;
 
-			var new_data = $.extend({}, origOptions.data, {
-				bp_msgat_attachment_ids: _l.$field_attachment_ids.val()
-			});
+			switch ( action ) {
+				case 'messages_send_reply':
+					util.current_action = 'thread';
 
-			options.data = $.param(new_data);
+					var new_data = $.extend({}, origOptions.data, {
+						bp_msgat_attachment_ids: _l.$field_attachment_ids.val()
+					});
+		
+					options.data = $.param(new_data);
+		
+					options.success = (function(old_success) {
+						_l.$field_attachment_ids.val('');//clear it
+						$('.msgat-uploaded-file').remove();
+		
+						return function(response, txt, xhr) {
+							if ($.isFunction(old_success)) {
+								old_success(response, txt, xhr);
+							}
+						}
+					})(options.success);
+					break;
 
-			options.success = (function(old_success) {
-				_l.$field_attachment_ids.val('');//clear it
-				$('.msgat-uploaded-file').remove();
+				case 'messages_get_thread_messages':
+					util.current_action = 'thread';
+					options.success = (function(old_success) {
+						return function(response, txt, xhr) {
+							if ( $.isFunction( old_success ) ) {
+								old_success( response, txt, xhr );
+							}
+							APP.setup();
+						}
+					})(options.success);
+					break;
 
-				return function(response, txt, xhr) {
-					if ($.isFunction(old_success)) {
-						old_success(response, txt, xhr);
-					}
-				}
-			})(options.success);
+			}
+
+			
 		},
 		start_uploader: function() {
+			console.log( 'inside start_uploader' );
+			if ( uploader ) {
+				uploader.destroy();
+			}
 
 			uploader = new plupload.Uploader({
 				runtimes: 'html5,silverlight,flash,html4',
@@ -119,26 +144,31 @@ window.BPMsgAt_Media_Uploader = (function($, util) {
 						//enable browse button
 						_l.$upload_button.removeAttr('disabled').removeClass('loading').html(_l.$upload_button.data('org_text'));
 
-						var responseJSON = $.parseJSON(info.response);
-
-						var attachment_ids = _l.$field_attachment_ids.val();
-						if (_uploader.multiselect) {
-							//@todo: later
+						let responseJSON = $.parseJSON(info.response);
+						if ( responseJSON.status ) {
+							if ( _uploader.multiselect ) {
+								//@todo: later
+							} else {
+								attachment_ids = responseJSON.attachment_id;
+								
+								//remove previous attachment, if any
+								_l.$field_attachment_ids.val(attachment_ids);
+								$('.msgat-uploaded-file').remove();
+	
+								//add new attachment
+								var new_att = "<span class='msgat-uploaded-file'>" + responseJSON.name
+										+ "<a href='#' data-attachment_id='" + responseJSON.attachment_id + "' class='remove-uploaded-file' "
+										+ " onclick='return window.BPMsgAt_Media_Uploader.removeAttachment(this)' "
+										+ " title='" + lang['remove'] + "'>x</a>"
+										+ "</span>";
+								$('#btn_msgat_upload').after(new_att);
+							}
 						} else {
-							attachment_ids = responseJSON.attachment_id;
 							//remove previous attachment, if any
+							_l.$field_attachment_ids.val( '' );
 							$('.msgat-uploaded-file').remove();
-
-							//add new attachment
-							var new_att = "<span class='msgat-uploaded-file'>" + responseJSON.name
-									+ "<a href='#' data-attachment_id='" + responseJSON.attachment_id + "' class='remove-uploaded-file' "
-									+ " onclick='return window.BPMsgAt_Media_Uploader.removeAttachment(this)' "
-									+ " title='" + lang['remove'] + "'>x</a>"
-									+ "</span>";
-							$('#btn_msgat_upload').after(new_att);
+							alert( responseJSON.message );
 						}
-
-						_l.$field_attachment_ids.val(attachment_ids);
 					},
 					Error: function(up, err) {
 						//enable submit button
@@ -188,7 +218,7 @@ window.BPMsgAt_Media_Uploader = (function($, util) {
 	} // APP
 
 
-	var API = {
+	let API = {
 		setup: function() {
 			APP.init();
 		},

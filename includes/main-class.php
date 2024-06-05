@@ -21,6 +21,9 @@ class BP_Msgat_Plugin {
 	private $admin_includes = array(
 		'admin',
 	);
+
+	public $admin = false;
+	public $actions = false;
 	
 	/**
 	 * Default options for the plugin.
@@ -32,14 +35,6 @@ class BP_Msgat_Plugin {
 		'file-types'	=> array( 'png', 'jpg', 'jpeg', 'pdf', 'zip', 'rar', ),//allowed files types in attachment
 		'max-size'		=> 5,//maximum attachment size in MB (per individual file),
 		'load-css'		=> true,
-		/**
-		 * Before message meta table was introduced in buddypress, attachments were saved in options table.
-		 * Now they are saved in message meta table.
-		 * But for backward compatibility, options table is still searched for attachments while displaying a message.
-		 * That makes 2 queries( otpions table + meta table ) instead of one.
-		 * If you are sure you've started using this plugin after 2.2.x version, you can turn it off.
-		 */
-		'query-options-table'	=> true,
 	);
 	
 	/**
@@ -246,13 +241,13 @@ class BP_Msgat_Plugin {
 			$attachment_id = bp_action_variable( 0 );
 			$thread_id = bp_action_variable( 1 );
 			
-			
 			$c_thread_template = new BP_Messages_Thread_Template( $thread_id, 'ASC', array(
 				'update_meta_cache' => false
 			) );
 			
-			if( !$c_thread_template )
+			if ( !$c_thread_template ) {
 				return;
+			}
 			
 			/* check if user is one of the participants in thread */
 			$is_participant = false;
@@ -262,19 +257,18 @@ class BP_Msgat_Plugin {
 					break;
 				}
 			}
-			if( !$is_participant )
+			if ( !$is_participant ) {
 				return;
+			}
 			
 			$attachment = get_post( $attachment_id );
-			if( 'attachment' != $attachment->post_type )
+			if ( 'attachment' != $attachment->post_type ) {
 				return;
-			
-			$file_file = basename( $attachment->guid );
-			
-			$msgat_upload_dir = $this->get_upload_dir();
-			$file_path = $msgat_upload_dir['dir'] .'/'. $file_file;
-			
+			}
 			$file_mime_type = $attachment->post_mime_type;
+
+			$file_path = get_attached_file( $attachment_id );
+			$file_name = basename( $file_path );
 			
 			// we have a file! let's force download.
 			if ( file_exists( $file_path ) ){
@@ -283,7 +277,7 @@ class BP_Msgat_Plugin {
 				header( 'Pragma: public' );
 				header( 'Content-Description: File Transfer' );
 				header( 'Content-Length: ' . filesize( $file_path ) );
-				header( 'Content-Disposition: attachment; filename='.$file_file );
+				header( 'Content-Disposition: attachment; filename='.$file_name );
 				header( 'Content-Type: ' .$file_mime_type );
 				ob_clean();
 				readfile( $file_path );

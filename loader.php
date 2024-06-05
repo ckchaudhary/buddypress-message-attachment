@@ -3,7 +3,7 @@
 Plugin Name: BuddyPress Message Attachment
 Plugin URI: http://webdeveloperswall.com/buddypress/buddypress-message-attachment
 Description: Extend BuddyPress' private message feature by enabling attachments. This plugin enables users to send attachments in private messages.
-Version: 2.1.1
+Version: 3.0.0
 Author: ckchaudhary
 Author URI: http://webdeveloperswall.com/author/ckchaudhary
 Text Domain: bp-msgat
@@ -13,9 +13,6 @@ Domain Path: /languages
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-/* ++++++++++++++++++++++++++++++
- * CONSTANTS
- +++++++++++++++++++++++++++++ */
 // Directory
 if ( ! defined( 'BPMSGAT_PLUGIN_DIR' ) ) {
 	define( 'BPMSGAT_PLUGIN_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
@@ -31,8 +28,6 @@ if ( ! defined( 'BPMSGAT_PLUGIN_URL' ) ) {
 
 	define( 'BPMSGAT_PLUGIN_URL', $plugin_url );
 }
-
-/* ______________________________ */
 
 function bp_msgat_init() {
 	global $bp_msgat;

@@ -139,7 +139,9 @@ if ( !class_exists('BP_Msgat_Admin') ):
 
 			add_settings_section('misc_section', __('Miscellaneous', 'bp-msgat'), array( $this, 'section_misc' ), __FILE__);
 			add_settings_field('load-css', __('Load CSS', 'bp-msgat'), array( $this, 'setting_load_css' ), __FILE__, 'misc_section');
-			add_settings_field('query-options-table', __('Query Options Table', 'bp-msgat'), array( $this, 'setting_query_options_table' ), __FILE__, 'misc_section');
+
+			add_filter( 'wp_get_attachment_image_attributes', array( $this, 'attachment_image_attributes_add_info_icon' ), 15, 2 );
+			add_action( 'admin_footer', array( $this, 'admin_footer' ) );
 		}
 
 		public function section_general() {
@@ -169,19 +171,20 @@ if ( !class_exists('BP_Msgat_Admin') ):
 		}
 
 		private function return_bytes( $val ) {
-			$val = trim($val);
-			$last = strtolower($val[strlen($val) - 1]);
-			switch ( $last ) {
-				// The 'G' modifier is available since PHP 5.1.0
-				case 'g':
-					$val *= 1024;
-				case 'm':
-					$val *= 1024;
-				case 'k':
-					$val *= 1024;
+			preg_match('/(?<value>\d+)(?<option>.?)/i', trim($val), $matches);
+			$inc = array(
+				'g' => 1073741824, // (1024 * 1024 * 1024)
+				'm' => 1048576, // (1024 * 1024)
+				'k' => 1024
+			);
+			
+			$value = (int) $matches['value'];
+			$key = strtolower(trim($matches['option']));
+			if (isset($inc[$key])) {
+				$value *= $inc[$key];
 			}
 
-			return $val;
+			return $value;
 		}
 
 		public function plugin_options_validate( $input ) {
@@ -239,22 +242,7 @@ if ( !class_exists('BP_Msgat_Admin') ):
 			$load_css = $this->option('load-css');
 			$checked = $load_css == 'yes' ? ' checked' : '';
 			echo "<input name='bp_msgat_plugin_options[load-css]' type='checkbox' value='yes' {$checked} />" . __('Yes', 'bp-msgat');
-			echo '<p class="description">' . __('Whether to load plugin\'s css file or not. If you have overriden plugins\' css rules in your theme, you can uncheck this.', 'bp-msgat') . '</p>';
-		}
-		
-		public function setting_query_options_table() {
-			$load_css = $this->option('query-options-table');
-			$checked = $load_css == 'yes' ? ' checked' : '';
-			echo "<input name='bp_msgat_plugin_options[query-options-table]' type='checkbox' value='yes' {$checked} />" . __('Yes', 'bp-msgat');
-			echo '<p class="description">';
-				_e('Before message meta table was introduced in buddypress, attachments were saved in options table.', 'bp-msgat') . '<br>';
-				_e('Now they are saved in message meta table.', 'bp-msgat') . '<br>';
-				_e('But for backward compatibility, options table is still searched for attachments while displaying a message.', 'bp-msgat') . '<br>';
-				_e('That makes 2 queries( otpions table + meta table ) instead of one.', 'bp-msgat') . '<br>';
-				_e('If you are sure you\'ve started using this plugin after 2.2.x version, you can uncheck it.', 'bp-msgat') . '<br>';
-				
-				echo '<strong>' . __('Warning!', 'bp-msgat') . '</strong> ' . __( 'If you are not sure, DO NOT uncheck it.');
-			echo '</p>';
+			echo '<p class="description">' . __('Whether to load plugin\'s css file or not. If you have overriden plugin\'s css rules in your theme, you can uncheck this.', 'bp-msgat') . '</p>';
 		}
 
 		public function save_network_settings_page() {
@@ -290,6 +278,54 @@ if ( !class_exists('BP_Msgat_Admin') ):
 				'<a href="' . esc_url($this->plugin_settings_url) . '">' . __("Settings", "bp-msgat") . '</a>',
 			);
 			return array_merge($links, $mylinks);
+		}
+
+		public function attachment_image_attributes_add_info_icon ( $attrs, $attachment ) {
+			$is_bp_msg_at = get_post_meta( $attachment->ID, '_is_bp_msgat', true );
+			if ( $is_bp_msg_at ) {
+				$attrs[ 'class' ] .= ' is_bp_msgat';
+				$msg_id = get_post_meta( $attachment->ID, '_bp_message_id', true );
+				if ( $msg_id ) {
+					$attrs[ 'class' ] .= ' has_bp_msg';
+				} else {
+					$attrs[ 'class' ] .= ' no_bp_msg';
+				}
+			}
+			
+			return $attrs;
+		}
+
+		public function admin_footer () {
+			global $current_screen;
+			if ( 'upload' !== $current_screen->id ) {
+				return false;
+			}
+			?>
+			<style type="text/css">
+			.media-icon:has( > img.is_bp_msgat ){
+				position: relative;
+			}
+			.media-icon:has( > img.is_bp_msgat ):before{
+				position: absolute;
+				top: 0;
+				left: 0;
+				content: "\f465";
+				font-family: dashicons;
+				font-size: 20px;
+				color: #999;
+				background-color: #fff;
+			}
+			.media-icon:has( > img.is_bp_msgat.no_bp_msg ):after{
+				position: absolute;
+				top: -6px;
+				left: -4px;
+				content: "\f158";
+				font-family: dashicons;
+				font-size: 10px;
+				color: red;
+			}
+			</style>
+			<?php 
 		}
 
 	}
