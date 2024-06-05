@@ -1,27 +1,31 @@
-.attachments-wrapper .attachment{
-    overflow: hidden;
-    border: 1px solid #f9f9f9;
-    background: #fff;
+.attachments-wrapper .attachment {
     padding: 5px;
+	border: 1px solid #f9f9f9;
+	overflow: hidden;    
+    background: #fff;
 }
-    .attachments-wrapper .attachment .inner{
-		background: #f9f9f9;
-    }
-		.attachments-wrapper .attachment .inner > img{
-			max-width: 30px;
-			height: auto;
-		}
-		.attachments-wrapper .attachment .inner a{
-			margin: 5px; vertical-align: top;
-		}
+
+.attachments-wrapper .attachment .inner {
+	background: #f9f9f9;
+}
+
+.attachments-wrapper .attachment .inner > img {
+	max-width: 30px;
+	height: auto;
+}
+
+.attachments-wrapper .attachment .inner a {
+	vertical-align: top;
+	margin: 5px;
+}
     
-.msgat-uploaded-file{
-    margin-left: 10px;
+.msgat-uploaded-file {
     display: inline-block;
+	margin-left: 10px;
+	padding: 2px 5px;
+	background: #F4FFF4;
     font-size: smaller;
-    padding: 2px 5px;
-    background: #F4FFF4;
 }
-    .msgat-uploaded-file a.remove-uploaded-file{
-		margin-left: 10px;
-    }
+.msgat-uploaded-file a.remove-uploaded-file {
+	margin-left: 10px;
+}
