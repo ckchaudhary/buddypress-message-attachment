@@ -3,11 +3,11 @@ msgstr ""
 "Project-Id-Version: BuddyPress Message Attachment 2.1.1\n"
 "Report-Msgid-Bugs-To: Chandan Chaudhary <ckchaudhary@hotmail.com>\n"
 "POT-Creation-Date: 2015-03-09 01:54+0530\n"
-"PO-Revision-Date: Tue Jul 07 2015 08:35:30 GMT+0530 (India Standard Time)\n"
+"PO-Revision-Date: 2024-06-06 11:18+0000\n"
 "Last-Translator: chandan <cchy1988@gmail.com>\n"
-"Language-Team: WebDevelopersWall <ckchaudhary@hotmail.com>\n"
-"Language: English\n"
-"Plural-Forms: nplurals=2; plural=n != 1\n"
+"Language-Team: English (United States)\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,172 +19,159 @@ msgstr ""
 "esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Poedit-Basepath: ../\n"
-"X-Generator: Loco - https://localise.biz/\n"
+"X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Loco-Target-Locale: en_US"
 
-#: ../includes/actions.php:70
+#: templates/form.php:11
+msgid "Add an attachment"
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:226
+msgid "Allowed File Types"
+msgstr ""
+
+#: templates/form.php:18
+msgid "Allowed file types : "
+msgstr ""
+
+#: includes/class-bp-msgat-action.php:110
 msgid "Allowed Files"
 msgstr ""
 
-#: ../includes/actions.php:82
-#, php-format
-msgid "Uploaded file must not be more than %s mb"
-msgstr ""
-
-#: ../includes/actions.php:83
-#, php-format
-msgid "Selected file not allowed to be uploaded. It must be one of the following: %s"
-msgstr ""
-
-#: ../includes/actions.php:84
-msgid "Error! File could not be uploaded."
-msgstr ""
-
-#: ../includes/actions.php:86
-msgid "Remove"
-msgstr ""
-
-#: ../includes/actions.php:87
-msgid "Uploading..."
-msgstr ""
-
-#: ../includes/admin.php:106 ../includes/admin.php:113
-msgid "BP Message Attachments"
-msgstr ""
-
-#: ../includes/admin.php:106
-msgid "Message Attachments"
-msgstr ""
-
-#: ../includes/admin.php:118
-msgid "Settings updated."
-msgstr ""
-
-#: ../includes/admin.php:126
-msgid "Save Changes"
-msgstr ""
-
-#: ../includes/admin.php:136
-msgid "Attachment Settings"
-msgstr ""
-
-#: ../includes/admin.php:137
-msgid "File Types"
-msgstr ""
-
-#: ../includes/admin.php:138
-msgid "Maximum Size"
-msgstr ""
-
-#: ../includes/admin.php:140
-msgid "Miscellaneous"
-msgstr ""
-
-#: ../includes/admin.php:141
-msgid "Load CSS"
-msgstr ""
-
-#: ../includes/admin.php:142
-msgid "Query Options Table"
-msgstr ""
-
-#: ../includes/admin.php:226
-msgid "Maximum size(in MB) allowed per file."
-msgstr ""
-
-#: ../includes/admin.php:234
-#, php-format
-msgid "Based on your php configuration, maximum file size can not exceed %s MB."
-msgstr ""
-
-#: ../includes/admin.php:241 ../includes/admin.php:248
-msgid "Yes"
-msgstr ""
-
-#: ../includes/admin.php:242
-msgid ""
-"Whether to load plugin's css file or not. If you have overriden plugins' css "
-"rules in your theme, you can uncheck this."
-msgstr ""
-
-#: ../includes/admin.php:250
-msgid ""
-"Before message meta table was introduced in buddypress, attachments were "
-"saved in options table."
-msgstr ""
-
-#: ../includes/admin.php:251
-msgid "Now they are saved in message meta table."
-msgstr ""
-
-#: ../includes/admin.php:252
-msgid ""
-"But for backward compatibility, options table is still searched for "
-"attachments while displaying a message."
-msgstr ""
-
-#: ../includes/admin.php:253
-msgid "That makes 2 queries( otpions table + meta table ) instead of one."
-msgstr ""
-
-#: ../includes/admin.php:254
-msgid ""
-"If you are sure you've started using this plugin after 2.2.x version, you "
-"can uncheck it."
-msgstr ""
-
-#: ../includes/admin.php:256
-msgid "Warning!"
-msgstr ""
-
-#: ../includes/admin.php:256
-msgid "If you are not sure, DO NOT uncheck it."
-msgstr ""
-
-#: ../includes/admin.php:290
-msgid "Settings"
-msgstr ""
-
-#: ../includes/main-class.php:169
-msgid "Images"
-msgstr ""
-
-#: ../includes/main-class.php:173
-msgid "Documents"
-msgstr ""
-
-#: ../includes/main-class.php:177
+#: includes/class-bp-msgat-plugin.php:260
 msgid "Archives"
 msgstr ""
 
-#: ../includes/main-class.php:181
+#: includes/class-bp-msgat-admin.php:225
+msgid "Attachment Settings"
+msgstr ""
+
+#: includes/class-bp-msgat-plugin.php:264
 msgid "Audio"
 msgstr ""
 
-#: ../includes/main-class.php:185
-msgid "Video"
+#. integer depicting maximum file size.
+#: includes/class-bp-msgat-admin.php:365
+#, php-format
+msgid ""
+"Based on your php configuration, maximum file size can not exceed %s MB."
 msgstr ""
 
-#: ../includes/main-class.php:234 ../includes/main-class.php:236
+#: includes/class-bp-msgat-admin.php:180
+msgid "BP Message Attachments"
+msgstr ""
+
+#. Name of the plugin
+msgid "BuddyPress Message Attachment"
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:196
+msgid "BuddyPress Message Attachments"
+msgstr ""
+
+#: includes/class-bp-msgat-plugin.php:317
+#: includes/class-bp-msgat-plugin.php:319
 msgid "BuddyPress Settings"
 msgstr ""
 
-#: ../includes/main-class.php:238
+#: templates/form.php:14
+msgid "Choose file"
+msgstr ""
+
+#. Author of the plugin
+msgid "ckchaudhary"
+msgstr ""
+
+#: includes/class-bp-msgat-plugin.php:256
+msgid "Documents"
+msgstr ""
+
+#: includes/class-bp-msgat-action.php:126
+msgid "Error! File could not be uploaded."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Extend BuddyPress' private message feature by enabling attachments. This "
+"plugin enables users to send attachments in private messages."
+msgstr ""
+
+#. placeholder - anchor tag with link to buddypress settings screen.
+#: includes/class-bp-msgat-plugin.php:323
 #, php-format
 msgid ""
 "Hey! BuddyPress Message Attachment requires messages component enabled. "
 "Please enable it by going under %s."
 msgstr ""
 
-#: ../templates/form.php:3
-msgid "Add an attachment"
+#. Author URI of the plugin
+msgid "https://twitter.com/ckchaudhary"
 msgstr ""
 
-#: ../templates/form.php:5
-msgid "Allowed file types : "
+#: includes/class-bp-msgat-plugin.php:252
+msgid "Images"
 msgstr ""
 
-#: ../templates/form.php:6
-msgid "Choose file"
+#: includes/class-bp-msgat-admin.php:230
+msgid "Load CSS"
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:227
+msgid "Maximum Size"
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:356
+msgid "Maximum size(in MB) allowed per file."
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:181
+msgid "Message Attachments"
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:229
+msgid "Miscellaneous"
+msgstr ""
+
+#: includes/class-bp-msgat-action.php:128
+msgid "Remove"
+msgstr ""
+
+#. warning about undesired file type.
+#: includes/class-bp-msgat-action.php:125
+#, php-format
+msgid ""
+"Selected file not allowed to be uploaded. It must be one of the following: %s"
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:431
+msgid "Settings"
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:202
+msgid "Settings updated."
+msgstr ""
+
+#. warning about chosen file exceeding maximum file size limit.
+#: includes/class-bp-msgat-action.php:123
+#, php-format
+msgid "Uploaded file must not be more than %s mb"
+msgstr ""
+
+#: includes/class-bp-msgat-action.php:129
+msgid "Uploading..."
+msgstr ""
+
+#: includes/class-bp-msgat-plugin.php:268
+msgid "Video"
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:378
+msgid ""
+"Whether to load plugin's css file or not. If you have overriden plugin's css "
+"rules in your theme, you can uncheck this."
+msgstr ""
+
+#: includes/class-bp-msgat-admin.php:377
+msgid "Yes"
 msgstr ""
