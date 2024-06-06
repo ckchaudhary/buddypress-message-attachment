@@ -1,9 +1,11 @@
 === BuddyPress Message Attachment ===
 Contributors: ckchaudhary 
-Tags: buddypress, message attachment
-Requires at least: 4.0
-Tested up to: 4.1.1
-Stable tag: 2.1.1
+Donate link: https://twitter.com/ckchaudhary
+Tags: buddypress, messages, attachments
+Requires PHP: 5.6
+Requires at least: 5.8
+Tested up to: 6.5
+Stable tag: 3.0.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,11 +24,14 @@ If you are running a multisite installation, you can activate this plugin networ
 After activating, make sure you change settings according to your liking/requirement. Settings can be found under **Settings>Message Attachment** in wp-admin or, on network admin screen if you have activated it network wide.
 
 == Screenshots ==
-1. Compose message screen ( with an uploaded attachment ).
-2. Thread details screen, with attachment displayed.
-3. Plugin settings screen.
+1. Thread details screen, with attachments displayed.
+2. Plugin settings screen.
+3. Media library, small icons to indicate a file was sent as an attachment with a buddypress message.
 
 == Changelog ==
+= 3.0.0 =
+* Made the plugin work with bp-nouveau.
+
 = 2.1.1 =
 * Added 'archive' file formats (e.g: zip, rar) on settings screen.
 * Added zip and rar into default file types allowed.
@@ -39,15 +44,8 @@ After activating, make sure you change settings according to your liking/require
 * Made it multisite compatible.
 * Removed unnecessary custom post type.
 
-**Updating from 1.1 to 2.0**
-Plugin has been completely rewritten. Data structure where attachment details were saved is changed. Unnecessary custom post type has been removed. This means that you'll loose all previous attachments data. There was no good way to continue supporting previous version. Plugin was not working with latest versions of wordpress and buddypress in almost all cases. But in case if your site had this plugin working, you shouldn't update the plugin right away. Please contact me, i plan on writing a separate importer to import old data into new data structure.
-
 = 1.1 =
 * Small Bug fixes
 
 = 1.0 =
 * Initial release
-
-== Upgrade Notice ==
-**Updating from 1.1 to 2.0**
-Plugin has been completely rewritten. Data structure where attachment details were saved is changed. Unnecessary custom post type has been removed. This means that you'll loose all previous attachments data. There was no good way to continue supporting previous version. Plugin was not working with latest versions of wordpress and buddypress in almost all cases. But in case if your site had this plugin working, you shouldn't update the plugin right away. Please contact me http://webdeveloperswall.com/author/ckchaudhary, i plan on writing a separate importer to import old data into new data structure.
