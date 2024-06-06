@@ -1,11 +1,10 @@
 <?php
 /**
  * Plugin Name: BuddyPress Message Attachment
- * Plugin URI: http://webdeveloperswall.com/buddypress/buddypress-message-attachment
  * Description: Extend BuddyPress' private message feature by enabling attachments. This plugin enables users to send attachments in private messages.
  * Version: 3.0.0
  * Author: ckchaudhary
- * Author URI: http://webdeveloperswall.com/author/ckchaudhary
+ * Author URI: https://twitter.com/ckchaudhary
  * Text Domain: bp-msgat
  * Domain Path: /languages
  *

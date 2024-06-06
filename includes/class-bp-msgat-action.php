@@ -191,7 +191,7 @@ if ( ! class_exists( 'BP_Msgat_Action' ) ) :
 				);
 			}
 
-			die( json_encode( $result ) );
+			die( wp_json_encode( $result ) );
 		}
 
 		/**

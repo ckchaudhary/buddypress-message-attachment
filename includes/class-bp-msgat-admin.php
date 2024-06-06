@@ -193,12 +193,12 @@ if ( ! class_exists( 'BP_Msgat_Admin' ) ) :
 		public function options_page() {
 			?>
 			<div class="wrap">
-				<h2><?php esc_html_e( 'BP Message Attachments', 'bp-msgat' ); ?></h2>
+				<h2><?php esc_html_e( 'BuddyPress Message Attachments', 'bp-msgat' ); ?></h2>
 				<form method="post" action="<?php echo esc_attr( $this->form_action ); ?>">
 
 					<?php
 					// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified elsewhere.
-					if ( $this->network_activated && isset( $_GET ['updated'] ) ) {
+					if ( $this->network_activated && isset( $_GET['updated'] ) ) {
 						echo '<div class="updated"><p>' . esc_attr__( 'Settings updated.', 'bp-msgat' ) . '</p></div>';
 					}
 					?>
@@ -223,7 +223,7 @@ if ( ! class_exists( 'BP_Msgat_Admin' ) ) :
 			register_setting( 'bp_msgat_plugin_options', 'bp_msgat_plugin_options', array( $this, 'plugin_options_validate' ) );
 
 			add_settings_section( 'general_section', __( 'Attachment Settings', 'bp-msgat' ), array( $this, 'section_general' ), __FILE__ );
-			add_settings_field( 'file-types', __( 'File Types', 'bp-msgat' ), array( $this, 'setting_file_types' ), __FILE__, 'general_section' );
+			add_settings_field( 'file-types', __( 'Allowed File Types', 'bp-msgat' ), array( $this, 'setting_file_types' ), __FILE__, 'general_section' );
 			add_settings_field( 'max-size', __( 'Maximum Size', 'bp-msgat' ), array( $this, 'setting_max_size' ), __FILE__, 'general_section' );
 
 			add_settings_section( 'misc_section', __( 'Miscellaneous', 'bp-msgat' ), array( $this, 'section_misc' ), __FILE__ );
