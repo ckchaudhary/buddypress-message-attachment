@@ -5,7 +5,7 @@ Tags: buddypress, messages, attachments
 Requires PHP: 5.6
 Requires at least: 5.8
 Tested up to: 6.5
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,9 @@ After activating, make sure you change settings according to your liking/require
 3. Media library, small icons to indicate a file was sent as an attachment with a buddypress message.
 
 == Changelog ==
+= 3.0.1 =
+* Security patch: Deny download if attachment doesn't belong to current thread.
+
 = 3.0.0 =
 * Made the plugin work with bp-nouveau.
 
