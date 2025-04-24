@@ -333,8 +333,8 @@ if ( ! class_exists( 'BP_Msgat_Plugin' ) ) :
 		 */
 		public function file_downloader() {
 			if ( bp_displayed_user_id() && bp_is_current_component( 'messages' ) && 'attachment' === bp_current_action() ) {
-				$attachment_id = bp_action_variable( 0 );
-				$thread_id = bp_action_variable( 1 );
+				$attachment_id = absint( bp_action_variable( 0 ) );
+				$thread_id = absint( bp_action_variable( 1 ) );
 
 				$c_thread_template = new BP_Messages_Thread_Template(
 					$thread_id,
@@ -358,6 +358,16 @@ if ( ! class_exists( 'BP_Msgat_Plugin' ) ) :
 					return;
 				}
 
+				// Check if the attachment belongs to the current thread
+				$bp_message_id = get_post_meta( $attachment_id, '_bp_message_id', true );
+				if ( ! $bp_message_id ) {
+					return;
+				}
+				$message                      = new BP_Messages_Message( $bp_message_id );
+				if ( $thread_id !== absint( $message->thread_id ) ) {
+					return;
+				}
+				
 				$attachment = get_post( $attachment_id );
 				if ( 'attachment' !== $attachment->post_type ) {
 					return;
